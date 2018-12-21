@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    <!-- Jquery and Popper -->
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+
+    <script type="/static/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="static/css/estilos.css">
+
+
+
+    <!--
+    <div class="container-fluid">
+      <link rel="shortcut icon" type="image/png" href="/static/img/BannerEstacionMetereologica.png" />
+      <title>Estacion Meteorologica</title>
+    </div>
+    -->
+    <title>Grupo 9- Proyecto Millis</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
+    <div class ="container">
+  <div class="row">
+      <div class="col-sm">
+         <form action="/">
+              Seleccione el intervalo de muestreo <br>
+              <input type="text" name="Valorderefresco" value="" id="refresco">
+              <input type="submit" class="btn btn-primary" value="Enviar">
+         </form>
+     </div>
+      <div class="col-sm">
+         <form action="/cancelar">
+              Desea terminar con el muestreo de datos <br>
+              <input type="submit" class="btn btn-primary" value="Cancelar">
+         </form>
+     </div>
+  </div>
+</div>
+
+</head>
+
+
+
+
+<body>
+    <div class="container">
+    <div class = "row">
+        <div class = "col-8">
+            <div class = "container">
+                <div class="table-responsive">
+                    <table class= "table table-bordered">
+                        <tbody>
+                            <tr> <th> Datos Medidos Por el Arduino</th></tr>
+                            <tr><td>Distancia: {{l.ultrasonido}} cm</td></tr>
+                            <tr><td>Graduacion: {{l.servomotor}} °</td></tr>
+                            <tr><td>Valor Del Potenciometro En Bytes: {{l.potenciometro}}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!---->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+         function getParameterByName(name)
+         {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+    <script type="text/javascript">
+        if(getParameterByName('Valorderefresco')!="")
+        {
+            var val = 1000*getParameterByName('Valorderefresco');
+        }
+        if(val != null)
+        {
+            self.setInterval("refresh()",val);
+            function refresh()
+            {
+              location.reload(true);
+            }
+        }
+    </script>
+
+
+</div>
+</body>
+
+</html>
